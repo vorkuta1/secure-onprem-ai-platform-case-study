@@ -1,90 +1,46 @@
-flowchart LR
-  %% Users
-  U1[Analysts / Non-technical users]
-  U2[Data Scientists]
+flowchart TB
+  %% Simple top-down layout with minimal connections
 
-  %% Platform Ops
-  subgraph Ops[Platform Ops]
-    GL[GitLab CI]
-    REG[GitLab Container Registry]
-    PRT[Portainer DEV]
-    AGT[Portainer Agent PROD]
+  Users[👥 Users<br/>Analysts + Data Scientists]
+
+  subgraph Platform[Platform Ops]
+    GitLab[GitLab CI + Registry]
+    Portainer[Portainer]
   end
 
-  %% Environments
-  subgraph DEV[DEV / STAGING VM]
-    DEVUI[Echo UI DEV]
-    DEVAPI[Echo Backend/API DEV]
-    DEVQ[Asynq Queue - Redis]
-    DEVW[Workers: ASR / Diar / OCR / MT / Summ]
-    DEVLLM[LLM API - Ollama]
-    DEVTR[Translation API]
-    DEVOCR[OCR API]
-    DEVVDB[Vector DB - Embeddings / RAG]
-    DEVMG[MongoDB - Auth + App Data]
-    DEVST[(NFS/SMB + MinIO<br/>Short-lived artifacts)]
-    DEVOBS[Prometheus + Grafana + Loki]
-    DEVQMON[AsynqMon]
-    DEVJH[JupyterHub]
+  subgraph Infra[Shared Infrastructure]
+    GPU[🖥️ H100 GPU]
+    Auth[🔐 Auth<br/>Local + Keycloak]
   end
 
-  subgraph PROD[PROD VM]
-    PRUI[Echo UI PROD]
-    PRAPI[Echo Backend/API PROD]
-    PRQ[Asynq Queue - Redis]
-    PRW[Workers: ASR / Diar / OCR / MT / Summ]
-    PRLLM[LLM API - Ollama]
-    PRTR[Translation API]
-    PROCRO[OCR API]
-    PRVDB[Vector DB - Embeddings / RAG]
-    PRMG[MongoDB - Auth + App Data]
-    PRST[(NFS/SMB + MinIO<br/>Short-lived artifacts)]
-    PROBS[Prometheus + Grafana + Loki]
-    PRQMON[AsynqMon]
-    PRJH[JupyterHub]
+  subgraph DEV[DEV Environment]
+    DEV_App[Echo UI + API]
+    DEV_Queue[Asynq + Workers]
+    DEV_AI[Ollama / OCR / Translation]
+    DEV_Data[MongoDB + VectorDB + MinIO]
+    DEV_Obs[Prometheus + Grafana]
+    DEV_JH[JupyterHub]
   end
 
-  %% Compute
-  H100[(Single H100 GPU<br/>Shared across two VMs)]
+  subgraph PROD[PROD Environment]
+    PROD_App[Echo UI + API]
+    PROD_Queue[Asynq + Workers]
+    PROD_AI[Ollama / OCR / Translation]
+    PROD_Data[MongoDB + VectorDB + MinIO]
+    PROD_Obs[Prometheus + Grafana]
+    PROD_JH[JupyterHub]
+  end
 
-  %% Identity
-  IDP[Keycloak - AD integration]
-  LA[Local Auth - fallback]
+  %% Simple connections
+  Users --> PROD_App
+  Users --> PROD_JH
+  
+  GitLab --> Portainer
+  Portainer --> DEV
+  Portainer --> PROD
 
-  %% Flows - Users
-  U1 -->|Web| PRUI
-  PRUI --> PRAPI
-  PRAPI --> PRQ
-  PRQ --> PRW
-  PRW --> PRLLM
-  PRW --> PRTR
-  PRW --> PROCRO
-  PRAPI --> PRVDB
-  PRAPI --> PRMG
-  PRAPI --> PRST
-
-  U2 -->|Notebooks| PRJH
-  PRJH -->|GPU jobs| H100
-  PRW -->|GPU inference| H100
-  PRJH --> PRST
-  PRJH --> PRVDB
-
-  %% Observability
-  PRAPI --> PROBS
-  PRW --> PROBS
-  PRQ --> PRQMON
-  PRQMON --> PROBS
-
-  %% Ops / Deploy
-  GL --> REG
-  REG --> PRT
-  REG --> AGT
-  PRT --> DEVUI
-  PRT --> DEVAPI
-  AGT --> PRUI
-  AGT --> PRAPI
-
-  %% Auth
-  PRUI -->|Auth| LA
-  PRUI -->|SSO| IDP
-  PRAPI --> PRMG
+  PROD_App --> Auth
+  PROD_Queue --> GPU
+  PROD_JH --> GPU
+  DEV_Queue --> GPU
+  DEV_JH --> GPU
