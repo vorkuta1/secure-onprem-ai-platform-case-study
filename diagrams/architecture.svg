@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #1a1a2e; }
+      .card { fill: #16213e; stroke: #0f3460; stroke-width: 2; rx: 8; }
+      .card-green { fill: #16213e; stroke: #10b981; stroke-width: 2; rx: 8; }
+      .card-amber { fill: #16213e; stroke: #f59e0b; stroke-width: 2; rx: 8; }
+      .card-purple { fill: #16213e; stroke: #8b5cf6; stroke-width: 2; rx: 8; }
+      .card-pink { fill: #2d1b4e; stroke: #ec4899; stroke-width: 2; rx: 8; }
+      .card-blue { fill: #16213e; stroke: #3b82f6; stroke-width: 2; rx: 8; }
+      .title { font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; fill: #fff; }
+      .heading { font-family: system-ui, sans-serif; font-weight: 700; font-size: 20px; fill: #fff; }
+      .text { font-family: system-ui, sans-serif; font-size: 12px; fill: #94a3b8; }
+      .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .arrow-pink { stroke: #ec4899; stroke-width: 2; fill: none; marker-end: url(#arrow-pink); stroke-dasharray: 5,3; }
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+    </marker>
+    <marker id="arrow-pink" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ec4899"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="1000" height="700"/>
+
+  <!-- Title -->
+  <text class="heading" x="40" y="40">Secure On-Premise AI Platform</text>
+  <text class="text" x="40" y="60">Echo Platform Architecture</text>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- LEFT COLUMN: Users + Ops -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  
+  <!-- Users -->
+  <rect class="card-blue" x="40" y="100" width="180" height="100"/>
+  <text class="title" x="60" y="130">👥 Users</text>
+  <text class="text" x="60" y="155">• Analysts (~100)</text>
+  <text class="text" x="60" y="175">• Data Scientists</text>
+
+  <!-- Platform Ops -->
+  <rect class="card-purple" x="40" y="230" width="180" height="100"/>
+  <text class="title" x="60" y="260">⚙️ Platform Ops</text>
+  <text class="text" x="60" y="285">• GitLab CI + Registry</text>
+  <text class="text" x="60" y="305">• Portainer</text>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- CENTER: DEV + PROD Environments -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+
+  <!-- DEV Environment -->
+  <rect class="card-green" x="270" y="100" width="320" height="250"/>
+  <text class="title" x="290" y="130" style="fill: #10b981;">DEV / STAGING</text>
+  
+  <text class="text" x="290" y="160">Application</text>
+  <text class="text" x="400" y="160" style="fill: #cbd5e1;">Echo UI + API</text>
+  
+  <text class="text" x="290" y="185">Processing</text>
+  <text class="text" x="400" y="185" style="fill: #cbd5e1;">Asynq Queue + Workers</text>
+  
+  <text class="text" x="290" y="210">AI Services</text>
+  <text class="text" x="400" y="210" style="fill: #cbd5e1;">Ollama, OCR, Translation</text>
+  
+  <text class="text" x="290" y="235">Data</text>
+  <text class="text" x="400" y="235" style="fill: #cbd5e1;">MongoDB, VectorDB, MinIO</text>
+  
+  <text class="text" x="290" y="260">Observability</text>
+  <text class="text" x="400" y="260" style="fill: #cbd5e1;">Prometheus + Grafana + Loki</text>
+  
+  <text class="text" x="290" y="285">Notebooks</text>
+  <text class="text" x="400" y="285" style="fill: #cbd5e1;">JupyterHub</text>
+
+  <!-- PROD Environment -->
+  <rect class="card-amber" x="270" y="380" width="320" height="250"/>
+  <text class="title" x="290" y="410" style="fill: #f59e0b;">PRODUCTION</text>
+  
+  <text class="text" x="290" y="440">Application</text>
+  <text class="text" x="400" y="440" style="fill: #cbd5e1;">Echo UI + API</text>
+  
+  <text class="text" x="290" y="465">Processing</text>
+  <text class="text" x="400" y="465" style="fill: #cbd5e1;">Asynq Queue + Workers</text>
+  
+  <text class="text" x="290" y="490">AI Services</text>
+  <text class="text" x="400" y="490" style="fill: #cbd5e1;">Ollama, OCR, Translation</text>
+  
+  <text class="text" x="290" y="515">Data</text>
+  <text class="text" x="400" y="515" style="fill: #cbd5e1;">MongoDB, VectorDB, MinIO</text>
+  
+  <text class="text" x="290" y="540">Observability</text>
+  <text class="text" x="400" y="540" style="fill: #cbd5e1;">Prometheus + Grafana + Loki</text>
+  
+  <text class="text" x="290" y="565">Notebooks</text>
+  <text class="text" x="400" y="565" style="fill: #cbd5e1;">JupyterHub</text>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- RIGHT COLUMN: GPU + Auth -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+
+  <!-- GPU -->
+  <rect class="card-pink" x="640" y="250" width="200" height="100"/>
+  <text class="title" x="660" y="280" style="fill: #f0abfc;">🖥️ GPU Compute</text>
+  <text class="text" x="660" y="305">NVIDIA H100</text>
+  <text class="text" x="660" y="325">Shared DEV + PROD</text>
+
+  <!-- Auth -->
+  <rect class="card" x="640" y="380" width="200" height="100"/>
+  <text class="title" x="660" y="410">🔐 Authentication</text>
+  <text class="text" x="660" y="435">• Local Auth (fallback)</text>
+  <text class="text" x="660" y="455">• Keycloak + AD</text>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- ARROWS -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+
+  <!-- Users → PROD -->
+  <path class="arrow" d="M220,150 L260,150 L260,450 L270,450"/>
+  
+  <!-- Ops → DEV -->
+  <path class="arrow" d="M220,260 L245,260 L245,200 L270,200"/>
+  
+  <!-- Ops → PROD -->
+  <path class="arrow" d="M220,300 L245,300 L245,500 L270,500"/>
+
+  <!-- DEV → GPU (dashed) -->
+  <path class="arrow-pink" d="M590,225 L620,225 L620,280 L640,280"/>
+  
+  <!-- PROD → GPU (dashed) -->
+  <path class="arrow-pink" d="M590,465 L620,465 L620,320 L640,320"/>
+
+  <!-- PROD → Auth -->
+  <path class="arrow" d="M590,550 L620,550 L620,430 L640,430"/>
+
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <!-- LEGEND -->
+  <!-- ════════════════════════════════════════════════════════════════ -->
+  <rect class="card" x="640" y="510" width="200" height="120"/>
+  <text class="title" x="660" y="540">Legend</text>
+  
+  <rect x="660" y="555" width="12" height="12" rx="2" fill="#10b981"/>
+  <text class="text" x="680" y="565">DEV Environment</text>
+  
+  <rect x="660" y="575" width="12" height="12" rx="2" fill="#f59e0b"/>
+  <text class="text" x="680" y="585">PROD Environment</text>
+  
+  <line x1="660" y1="600" x2="672" y2="600" stroke="#ec4899" stroke-width="2" stroke-dasharray="4,2"/>
+  <text class="text" x="680" y="605">GPU Access</text>
+
+</svg>
