@@ -7,49 +7,49 @@ flowchart LR
   subgraph Ops[Platform Ops]
     GL[GitLab CI]
     REG[GitLab Container Registry]
-    PRT[Portainer (DEV)]
-    AGT[Portainer Agent (PROD)]
+    PRT[Portainer DEV]
+    AGT[Portainer Agent PROD]
   end
 
   %% Environments
   subgraph DEV[DEV / STAGING VM]
-    DEVUI[Echo UI (DEV)]
-    DEVAPI[Echo Backend/API (DEV)]
-    DEVQ[Asynq Queue (Redis)]
-    DEVW[Workers (ASR / Diar / OCR / MT / Summ)]
-    DEVLLM[LLM API (Ollama)]
+    DEVUI[Echo UI DEV]
+    DEVAPI[Echo Backend/API DEV]
+    DEVQ[Asynq Queue - Redis]
+    DEVW[Workers: ASR / Diar / OCR / MT / Summ]
+    DEVLLM[LLM API - Ollama]
     DEVTR[Translation API]
     DEVOCR[OCR API]
-    DEVVDB[Vector DB (Embeddings / RAG)]
-    DEVMG[MongoDB (Auth + app data)]
-    DEVST[(NFS/SMB + MinIO)\nShort-lived artifacts]
+    DEVVDB[Vector DB - Embeddings / RAG]
+    DEVMG[MongoDB - Auth + App Data]
+    DEVST[(NFS/SMB + MinIO<br/>Short-lived artifacts)]
     DEVOBS[Prometheus + Grafana + Loki]
     DEVQMON[AsynqMon]
     DEVJH[JupyterHub]
   end
 
   subgraph PROD[PROD VM]
-    PRUI[Echo UI (PROD)]
-    PRAPI[Echo Backend/API (PROD)]
-    PRQ[Asynq Queue (Redis)]
-    PRW[Workers (ASR / Diar / OCR / MT / Summ)]
-    PRLLM[LLM API (Ollama)]
+    PRUI[Echo UI PROD]
+    PRAPI[Echo Backend/API PROD]
+    PRQ[Asynq Queue - Redis]
+    PRW[Workers: ASR / Diar / OCR / MT / Summ]
+    PRLLM[LLM API - Ollama]
     PRTR[Translation API]
     PROCRO[OCR API]
-    PRVDB[Vector DB (Embeddings / RAG)]
-    PRMG[MongoDB (Auth + app data)]
-    PRST[(NFS/SMB + MinIO)\nShort-lived artifacts]
+    PRVDB[Vector DB - Embeddings / RAG]
+    PRMG[MongoDB - Auth + App Data]
+    PRST[(NFS/SMB + MinIO<br/>Short-lived artifacts)]
     PROBS[Prometheus + Grafana + Loki]
     PRQMON[AsynqMon]
     PRJH[JupyterHub]
   end
 
   %% Compute
-  H100[(Single H100 GPU\nShared across two VMs)]
+  H100[(Single H100 GPU<br/>Shared across two VMs)]
 
   %% Identity
-  IDP[Keycloak (optional)\nAD integration]
-  LA[Local Auth (fallback)]
+  IDP[Keycloak - AD integration]
+  LA[Local Auth - fallback]
 
   %% Flows - Users
   U1 -->|Web| PRUI
@@ -88,4 +88,3 @@ flowchart LR
   PRUI -->|Auth| LA
   PRUI -->|SSO| IDP
   PRAPI --> PRMG
-
